@@ -21,10 +21,13 @@ html {
     color: #252525;
   }
 
+  header {
+    padding-bottom: 1em;
+  }
+
   input {
     border-radius: 99em;
     border: 0;
-    min-height: 4em;
     padding: .5em;
   }
 
@@ -39,7 +42,7 @@ html {
   }
 
   .sidebar-item{
-    margin: 0;
+    margin: 1em;
     padding: .5em .5em .5em 0;
     display: flex;
     flex-flow: row wrap;
@@ -60,8 +63,22 @@ html {
     padding: 1em;
   }
 
-  .chat-message-box {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  div.chat-card {
+    padding: 2em;
+    background-color: #f9fdfc;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 
+    minmax(2em, auto)
+    minmax(2em, auto);
   }
+
+  .chat-message-box {
+    position: sticky;
+    bottom: 1em;
+    width: 100%;
+    min-height: 4em;
+    margin-top: 1em;
+  }
+
+
