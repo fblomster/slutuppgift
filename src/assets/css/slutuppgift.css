@@ -85,7 +85,7 @@ html {
     position: relative;
   }
 
-  .send-button {
+ /* .send-button {
     position: absolute;
     top: 0;
     border-radius: 5px;
@@ -98,6 +98,12 @@ html {
     color: white;
     background-color: #1e90ff;
     transform: translateX(2px);
+  }*/
+
+  .arrow-button {
+    position: absolute;
+    right: 0;
+    margin-right: 1em;  
   }
 
 

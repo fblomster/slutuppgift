@@ -1,5 +1,6 @@
-addEventListener("DOMContentLoaded", init);
+//addEventListener("DOMContentLoaded", init);
 //updatedMessages();
+init();
 
 function init() {
   loadMessages();
@@ -8,7 +9,20 @@ function init() {
     console.log(event);
     event.preventDefault();
   });
+
+  //addEventListener("DOMContentLoaded", ...);
 }
+
+/*const data = JSON.stringify({
+  success: true,
+  messages: {
+    id: 1,
+    user: 1,
+    message: 1,
+    timestamp: 1,
+  },
+  last: 1,
+});*/
 
 async function loadMessages() {
   const token =
@@ -22,6 +36,7 @@ async function loadMessages() {
         Authorization:
           "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
       },
+      //data,
     }
   );
 
@@ -31,6 +46,35 @@ async function loadMessages() {
     request,
     response,
   });
+
+  response.messages.forEach((item) => {
+    console.log(messageTemplate(item));
+  });
+
+  const fragment = new DocumentFragment();
+  const container = document.querySelector(".chat-card");
+
+  response.messages.forEach((item) => {
+    const article = document.createElement("article");
+
+    //article.classList.add("portfolio-card");
+    //article.classList.add("portfolio-projects-item");
+    article.classList.add("chat-card");
+    article.innerHTML = messageTemplate(item);
+
+    fragment.appendChild(article);
+  });
+
+  container.appendChild(fragment);
+}
+
+function messageTemplate({ user, message }) {
+  return `
+      <header>
+        <h3>${user}</h3>
+      </header>
+      <p>${message}</p>
+    `;
 }
 
 async function updatedMessages() {
