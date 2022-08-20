@@ -4,29 +4,19 @@ init();
 
 function init() {
   loadMessages();
-  const form = document.querySelector('form[name="message-form"]');
+  appendMessages();
+  /*const form = document.querySelector('form[name="message-form"]');
   form.addEventListener("submit", (event) => {
     console.log(event);
     event.preventDefault();
-  });
+  });*/
 
   //addEventListener("DOMContentLoaded", ...);
 }
 
-/*const data = JSON.stringify({
-  success: true,
-  messages: {
-    id: 1,
-    user: 1,
-    message: 1,
-    timestamp: 1,
-  },
-  last: 1,
-});*/
-
 async function loadMessages() {
-  const token =
-    "N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=";
+  //const token =
+  // "N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=";
   const request = await fetch(
     "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages",
     {
@@ -36,7 +26,6 @@ async function loadMessages() {
         Authorization:
           "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
       },
-      //data,
     }
   );
 
@@ -52,20 +41,30 @@ async function loadMessages() {
   });
 
   const fragment = new DocumentFragment();
+
   const container = document.querySelector(".chat-card");
+  const name = document.querySelector(".sidebar-item");
 
   response.messages.forEach((item) => {
     const article = document.createElement("article");
 
-    //article.classList.add("portfolio-card");
-    //article.classList.add("portfolio-projects-item");
     article.classList.add("chat-card");
     article.innerHTML = messageTemplate(item);
 
     fragment.appendChild(article);
   });
 
+  response.messages.forEach((item) => {
+    const article = document.createElement("article");
+
+    article.classList.add("sidebar-item");
+    article.innerHTML = nameTemplate(item);
+
+    fragment.appendChild(article);
+  });
+
   container.appendChild(fragment);
+  name.appendChild(fragment);
 }
 
 function messageTemplate({ user, message }) {
@@ -75,6 +74,12 @@ function messageTemplate({ user, message }) {
       </header>
       <p>${message}</p>
     `;
+}
+
+function nameTemplate({ user }) {
+  return `
+        <article><p>${user}</p></article>
+      `;
 }
 
 async function updatedMessages() {
@@ -87,7 +92,7 @@ async function updatedMessages() {
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          "N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
+          "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
       },
     }
   );
@@ -97,5 +102,41 @@ async function updatedMessages() {
   console.log({
     request,
     response,
+  });
+}
+
+function appendMessages() {
+  const form = document.querySelector('form[name="message-form"]');
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const user = "Frida";
+    const form = event.target;
+    const formData = new FormData(form);
+    const formInput = Object.fromEntries(formData);
+    //const url = new URL(form.action);
+    const request = await fetch(
+      "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages/append",
+      {
+        //`${baseurl}${url.pathname}`, {
+        method: form.method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
+        },
+        body: JSON.stringify(formInput),
+        /*body: JSON.stringify({
+          formInput: {
+            user,
+            formInput,
+          },
+        }),*/
+      }
+    );
+    const response = await request.text();
+
+    console.log(response);
   });
 }
