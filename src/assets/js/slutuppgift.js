@@ -114,10 +114,10 @@ function appendMessages() {
     const user = "Frida";
     const form = event.target;
     const formData = new FormData(form);
-    const formInput = Object.fromEntries(formData);
+    const message = Object.fromEntries(formData);
     const params = {
       user: user,
-      message: formInput,
+      message: JSON.stringify(message),
     };
     //const url = new URL(form.action);
     const request = await fetch(
@@ -132,10 +132,8 @@ function appendMessages() {
         },
         body: JSON.stringify(params),
         /*body: JSON.stringify({
-          messages: {
-            user,
-            message,
-          },
+          user: "Frida",
+          message,
         }),*/
       }
     );
