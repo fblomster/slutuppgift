@@ -115,6 +115,10 @@ function appendMessages() {
     const form = event.target;
     const formData = new FormData(form);
     const formInput = Object.fromEntries(formData);
+    const params = {
+      user: user,
+      message: formInput,
+    };
     //const url = new URL(form.action);
     const request = await fetch(
       "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages/append",
@@ -126,11 +130,11 @@ function appendMessages() {
           Authorization:
             "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
         },
-        body: JSON.stringify(formInput),
+        body: JSON.stringify(params),
         /*body: JSON.stringify({
-          formInput: {
+          messages: {
             user,
-            formInput,
+            message,
           },
         }),*/
       }
