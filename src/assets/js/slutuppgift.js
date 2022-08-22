@@ -5,6 +5,8 @@ init();
 function init() {
   loadMessages();
   appendMessages();
+  updateMessages();
+  setTimeout(updateMessages, 5000);
   /*const form = document.querySelector('form[name="message-form"]');
   form.addEventListener("submit", (event) => {
     console.log(event);
@@ -82,9 +84,7 @@ function nameTemplate({ user }) {
       `;
 }
 
-/*async function updatedMessages() {
-  const token =
-    "N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=";
+async function updateMessages() {
   const request = await fetch(
     "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages/updated",
     {
@@ -103,7 +103,7 @@ function nameTemplate({ user }) {
     request,
     response,
   });
-}*/
+}
 
 function appendMessages() {
   const form = document.querySelector('form[name="message-form"]');
