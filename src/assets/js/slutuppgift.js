@@ -4,7 +4,7 @@ init();
 
 function init() {
   loadMessages();
-  appendMessages();
+  //appendMessages();
   updateMessages();
   setTimeout(updateMessages, 5000);
   /*const form = document.querySelector('form[name="message-form"]');
@@ -105,19 +105,19 @@ async function updateMessages() {
   });
 }
 
-function appendMessages() {
+function appendMessages(message) {
   const form = document.querySelector('form[name="message-form"]');
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const user = "Frida";
-    const form = event.target;
-    const formData = new FormData(form);
-    const message = Object.fromEntries(formData);
+    //const form = event.target;
+    //const formData = new FormData(form);
+    //const message = Object.fromEntries(formData);
     const params = {
       user: user,
-      message: JSON.stringify(message),
+      message: message,
     };
     //const url = new URL(form.action);
     const request = await fetch(

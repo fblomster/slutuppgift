@@ -50,8 +50,8 @@
     </div>
     <div class="button-inside">
     <form method="post" name="message-form">
-    <input class="chat-message-box" type="text" id="chat-message" name="chat-message" placeholder="Your message...">
-    <button class="arrow-button" type="submit"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <input class="chat-message-box" type="text" id="chatMessage" name="chatMessage" placeholder="Your message...">
+    <button class="arrow-button" onclick="appendMessages(chatMessage.value)" type="submit"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
     </svg>Skicka</button>
     </form> 
