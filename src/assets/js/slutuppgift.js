@@ -82,7 +82,7 @@ function nameTemplate({ user }) {
       `;
 }
 
-async function updatedMessages() {
+/*async function updatedMessages() {
   const token =
     "N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=";
   const request = await fetch(
@@ -103,7 +103,7 @@ async function updatedMessages() {
     request,
     response,
   });
-}
+}*/
 
 function appendMessages() {
   const form = document.querySelector('form[name="message-form"]');
