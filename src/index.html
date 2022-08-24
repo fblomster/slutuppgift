@@ -50,15 +50,19 @@
     </div>
     <div class="button-inside">
     <form method="post" name="message-form">
-    <input class="chat-message-box" type="text" id="chatMessage" name="chatMessage" placeholder="Your message...">
-    <button class="arrow-button" onclick="appendMessages(chatMessage.value)" type="submit"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-    </svg>Skicka</button>
+    <input class="chat-message-box" type="text" id="chatMessage" name="chatMessage" placeholder="Your message..." required style="box-shadow:none">
+    <button class="arrow-button" onclick="appendMessages(chatMessage.value)" type="submit">Skicka</button>
     </form> 
   </div> 
   </main>
+  <footer>Copyright 2022 The Chatter Group</footer>
   </div>
   
   <script src="./assets/js/slutuppgift.js"></script>
 </body>
+
 </html>
+
+<!--<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+</svg> -->
