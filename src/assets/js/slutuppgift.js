@@ -56,14 +56,14 @@ async function loadMessages() {
     fragment.appendChild(article);
   });
 
-  /*response.messages.forEach((item) => {
+  response.messages.forEach((item) => {
     const article = document.createElement("article");
 
     article.classList.add("sidebar-item");
     article.innerHTML = nameTemplate(item);
 
     fragment.appendChild(article);
-  });*/
+  });
 
   container.appendChild(fragment);
   name.appendChild(fragment);

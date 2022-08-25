@@ -9,6 +9,12 @@ html {
   *::after {
     box-sizing: inherit;
   }
+
+  :root {
+    --main-standout-color: hsl(283, 81%, 69%);
+    --main-standout-text-color: blanchedalmond;
+    --main-hover-color: hsl(283, 89%, 56%);
+  }
   
   body {
     margin: 0;
@@ -26,7 +32,11 @@ html {
   }
 
   footer {
-    padding-top: .5em;
+    padding-top: .8em;
+    padding-left: .2em;
+    /*position: fixed;
+    bottom: 0;*/
+    text-align: center;
   }
 
   input {
@@ -57,14 +67,20 @@ html {
     animation: enter .5s ease forwards;
     animation-duration: 3s;
     animation-name: slidein;
-
-   background: hsl(283, 81%, 69%);
+    background: var(--main-standout-color);
   border-radius: 99em;
   display: block;
   flex: 1;
   text-align: center;
-  color: blanchedalmond;
+  color: var(--main-standout-text-color);
   text-decoration: none;
+  }
+
+  .sidebar-item:hover {
+    width: 3em left;
+    height: 3em;
+    background-color: var(--main-hover-color);
+    transition: background-color 2s ease-out;
   }
 
   @keyframes slidein {
@@ -100,20 +116,6 @@ html {
   animation-delay: 2.5s;
 }
 
-  .sidebar-item:hover {
-    width: 3em left;
-    height: 3em;
-    animation-name: color;
-  }
-
-  @keyframes color {
-    from { 
-      background-color: hsl(283, 81%, 69%);
-    }
-    to { 
-      background-color: hsl(283, 89%, 56%);
-    }
-  }
 
   div.chat-flow {
     margin-left: 200px;
@@ -130,6 +132,15 @@ html {
     minmax(2em, auto);
   }
 
+  .cf:after{
+    content:"";
+    display:table;
+}
+
+.cf:after{
+    clear:both;
+}
+
   .chat-message-box {
     position: sticky;
     bottom: 1em;
@@ -138,56 +149,56 @@ html {
     margin-top: 1em;
   }
 
-  .button-inside {
+  label {
     position: relative;
   }
 
- /* .send-button {
+  .arrow-button {
     position: absolute;
     top: 0;
-    border-radius: 5px;
-    right: 0px;
-    z-index: 2;
-    border: none;
-    top: 2px;
-    height: 30px;
-    cursor: pointer;
-    color: white;
-    background-color: #1e90ff;
-    transform: translateX(2px);
-  }*/
-
-  .arrow-button {
-    overflow: visible;
-    position: relative;
+    bottom: 0;
+    right: 0;
     float: right;
     border: 0;
     padding: 0;
     cursor: pointer;
-    height: 40px;
-    width: 110px;
-    font: 13px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
-    color: #fff;
+    height: fit-content;
+    width: 20%;
+    font: 16px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    color: var(--main-standout-text-color);
     text-transform: uppercase;
-    background: #198cff;
+    background: var(--main-standout-color);
     border-radius: 40px;
-    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
 }  
 
-.arrow-button:hover{    
-/*     background: #e54040; */
-}  
-
-.arrow-button:active,
-.arrow-button:focus{  
-    background: #198cff;
-    outline: 0;  
+.arrow-button:hover {
+  background-color: var(--main-hover-color);
 }
 
-  .arrow-button2 {
-    position: absolute;
-    right: 0;
-    margin-right: 1em;  
-  }
+
+.arrow-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.arrow-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.arrow-button:hover span {
+  padding-right: 25px;
+}
+
+.arrow-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}  
 
 
