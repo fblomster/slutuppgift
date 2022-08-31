@@ -38,12 +38,9 @@ async function loadMessages() {
     response,
   });
 
-  response.messages
-    .slice()
-    .reverse()
-    .forEach((item) => {
-      console.log(messageTemplate(item));
-    });
+  response.messages.reverse().forEach((item) => {
+    console.log(messageTemplate(item));
+  });
 
   const fragment = new DocumentFragment();
 
