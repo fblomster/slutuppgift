@@ -6,7 +6,7 @@ function init() {
   loadMessages();
   //appendMessages();
   updateMessages();
-  setTimeout(updateMessages, 5000);
+  setTimeout(updateMessages, 2000);
   /*const form = document.querySelector('form[name="message-form"]');
   form.addEventListener("submit", (event) => {
     console.log(event);
@@ -38,9 +38,12 @@ async function loadMessages() {
     response,
   });
 
-  response.messages.forEach((item) => {
-    console.log(messageTemplate(item));
-  });
+  response.messages
+    .slice()
+    .reverse()
+    .forEach((item) => {
+      console.log(messageTemplate(item));
+    });
 
   const fragment = new DocumentFragment();
 
