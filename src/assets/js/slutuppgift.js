@@ -5,8 +5,8 @@ init();
 function init() {
   loadMessages();
   //appendMessages();
-  updateMessages();
-  setTimeout(updateMessages, 2000);
+  //updateMessages();
+  //setTimeout(updateMessages, 2000);
   /*const form = document.querySelector('form[name="message-form"]');
   form.addEventListener("submit", (event) => {
     console.log(event);
@@ -15,6 +15,8 @@ function init() {
 
   //addEventListener("DOMContentLoaded", ...);
 }
+
+let last_id = 0;
 
 async function loadMessages() {
   //const token =
@@ -38,6 +40,14 @@ async function loadMessages() {
     response,
   });
 
+  /*response.last.forEach((item) => {
+    console.log(renderLast(item));
+  });*/
+
+  console.log(response.last);
+  last_id = response.last;
+  updateMessages(last_id);
+
   response.messages.reverse().forEach((item) => {
     console.log(messageTemplate(item));
   });
@@ -56,7 +66,7 @@ async function loadMessages() {
     fragment.appendChild(article);
   });
 
-  response.messages.forEach((item) => {
+  /*response.messages.forEach((item) => {
     const article = document.createElement("article");
 
     article.classList.add("sidebar-item");
@@ -65,22 +75,39 @@ async function loadMessages() {
     fragment.appendChild(article);
   });
 
+  response.messages.forEach((item) => {
+    const article = document.createElement("article");
+
+    article.classList.add("sidebar-item");
+    article.innerHTML = nameTemplate(item);
+
+    fragment.appendChild(article);
+  });*/
+
   container.appendChild(fragment);
-  name.appendChild(fragment);
+  //name.appendChild(fragment);
 }
 
-function messageTemplate({ user, message }) {
+function messageTemplate({ user, message, timestamp }) {
   return `
       <header>
         <h3>${user}</h3>
       </header>
-      <p>${message}</p>
+      <p>${message}${timestamp}</p>
     `;
 }
 
 function nameTemplate({ user }) {
   return `
         <article><p>${user}</p></article>
+      `;
+}
+
+function renderLast({ last }) {
+  //const test = await loadMessages();
+  //console.log(last);
+  return `
+        <article><p>${last}</p></article>
       `;
 }
 
@@ -103,7 +130,18 @@ async function updateMessages() {
     request,
     response,
   });
-  //loadMessages();
+
+  //console.log(last);
+  console.log(response.updated);
+  if (response.updated == false) {
+    console.log("No new messages!");
+    //const myTimeout = setTimeout(loadMessages, 2000);
+    //clearTimeout(myTimeout);
+  } else {
+    console.log("Messages updated");
+    setTimeout(updateMessages, 20000);
+    location.reload();
+  }
 }
 
 function appendMessages(message) {
